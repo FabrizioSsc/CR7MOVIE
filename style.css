@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+}
+
+
+:root{
+    --primay-color:#22254b;
+    --second-color:#373b69;
+    
+
+}
+
+body{
+    background-color: var(--primay-color);
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;   
+}
+
+header{
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--second-color);
+
+}
+/* barra de pesquisa*/
+.search{
+    background-color: transparent;
+    border: 2px solid var(--primay-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    color: #fff;
+
+}
+
+.search:focus{
+    outline: none;
+    background-color: var(--primay-color);
+}
+
+.search::placeholder{
+    color: #7378c5;
+}
+
+
+/* Cards*/
+
+main{
+    display: flex; 
+    flex-wrap: wrap;
+}
+
+.movie{
+    width: 300px;
+}
+
+.movie img{
+    width: 100%;
+
+}
