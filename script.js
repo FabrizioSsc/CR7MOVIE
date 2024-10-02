@@ -42,13 +42,38 @@ function discoverMovies(dataMovies) {
             description: index.overview,
             poster: getMoviePoster(index.poster_path)
         }
-        console.log(dataMovies.results[i].title);
 
         addMovieInDiscover(movie.title, movie.description, movie.poster);
     }
 
     
 }
+
+var movieSearched = undefined;
+
+function requestMoviesSearch(movie_) {
+    movieSearched = movie_;
+    const requestOptionsSearch = {
+        method: "GET",
+        url: `https://api.themoviedb.org/3/search/movie?query=${movieSearched}&language=${lang}`,
+        headers: {
+            accept: 'application/json',
+            Authorization: api_key
+        }   
+    }
+
+    axios(requestOptionsSearch)
+    .then(response => {
+        console.log(response);
+        searchMovies(response);
+    })
+}
+
+function searchMovies() {
+    console.log("função")
+}
+
+const discover = document.getElementById("main");
 
 function addMovieInDiscover(title_, description_, img_ = "") {
     
@@ -81,6 +106,20 @@ function addMovieInDiscover(title_, description_, img_ = "") {
     discover.append(movie);
 }
 
-const discover = document.getElementById("main");
+const search = document.getElementById("form");
+const searchInput = document.getElementById("search");
+search.onsubmit = (ev) => {
+    ev.preventDefault();
+    
+    const movies = document.querySelectorAll(".movie");
+    console.log(movies)
+    movies.forEach(m => {
+        m.remove();
+    });
+
+    requestMoviesSearch(searchInput.value);
+
+}
 
 requestMovies();
+
