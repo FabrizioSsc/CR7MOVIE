@@ -1,17 +1,30 @@
-import api_key from "./api-key.js";
+import api_key from "./api-key.js"; //importing api key
 
-const lang = "pt-BR";
+const lang = "pt-BR"; //language
 
-const requestOptions = {
-    method: "GET",
-    url: `https://api.themoviedb.org/3/discover/movie?language=${lang}`,
-    headers: {
-        accept: 'application/json',
-        Authorization: api_key
-    }   
+//elements
+const search = document.getElementById("form");
+const searchInput = document.getElementById("search");
+
+//getting image to poster
+const getImage = "https://image.tmdb.org/t/p/";
+const imageWidth = "original";  //w300 - original
+
+function getMoviePoster(path_) {
+    return getImage + imageWidth + path_;
 }
 
-function requestMovies() {
+//request discover movies
+function requestMovies() {    
+    const requestOptions = {
+        method: "GET",
+        url: `https://api.themoviedb.org/3/discover/movie?language=${lang}`,
+        headers: {
+            accept: 'application/json',
+            Authorization: api_key
+        }
+    }
+
     axios(requestOptions)
     .then(response => {
         discoverMovies(response.data);
@@ -23,36 +36,38 @@ function requestMovies() {
     })
 }
 
-const getImage = "https://image.tmdb.org/t/p/";
-const ImageWidth = "original";  //w300 - original
-
-function getMoviePoster(path_) {
-    return getImage + ImageWidth + path_;
-}
-
 function discoverMovies(dataMovies) {
-    console.log(dataMovies.results);
-
     const len = dataMovies.results.length;
-
+    console.log(dataMovies)
     for(var i = 0; i < len; i++) {
         const index = dataMovies.results[i];
         const movie = {
             title: index.title,
             description: index.overview,
-            poster: getMoviePoster(index.poster_path)
+            poster: getMoviePoster(index.poster_path),
+            score: index.vote_average
+
         }
 
         addMovieInDiscover(movie.title, movie.description, movie.poster);
     }
-
-    
 }
 
+//clear home
+function removeMovies() {
+    //destroy all movies in discover
+    const movies = document.querySelectorAll(".movie");
+    movies.forEach(m => {
+        m.remove();
+    });
+}
+
+//request searched movies
 var movieSearched = undefined;
 
 function requestMoviesSearch(movie_) {
     movieSearched = movie_;
+
     const requestOptionsSearch = {
         method: "GET",
         url: `https://api.themoviedb.org/3/search/movie?query=${movieSearched}&language=${lang}`,
@@ -64,18 +79,41 @@ function requestMoviesSearch(movie_) {
 
     axios(requestOptionsSearch)
     .then(response => {
-        console.log(response);
-        searchMovies(response);
+        searchMovies(response.data);
+        return;
+    }).catch(error => {
+        console.log(error);
+        return false;
     })
 }
 
-function searchMovies() {
-    console.log("função")
+function searchMovies(dataMovies) {
+    const len = dataMovies.results.length;
+
+    for(var i = 0; i < len; i++) {
+        const index = dataMovies.results[i];
+        const movie = {
+            title: index.title,
+            description: index.overview,
+            poster: getMoviePoster(index.poster_path)
+        }
+        
+        addMovieInDiscover(movie.title, movie.description, movie.poster);
+    }
 }
 
+search.onsubmit = (ev) => { //input execute all
+    ev.preventDefault();
+    
+    removeMovies();
+
+    requestMoviesSearch(searchInput.value);
+}
+
+//add elements in home
 const discover = document.getElementById("main");
 
-function addMovieInDiscover(title_, description_, img_ = "") {
+function addMovieInDiscover(title_, description_, img_ = "", score_ = 10) {
     
     const movie = document.createElement("div");
     movie.className = "movie";
@@ -91,12 +129,14 @@ function addMovieInDiscover(title_, description_, img_ = "") {
             movieTitle.innerHTML = title_;
 
             const score = document.createElement("span");
-            score.innerHTML = "10";
+            score.className = "green";
+            score.innerHTML = score_;
             
             movieInfo.append(movieTitle);
             movieInfo.append(score);
 
         const overview = document.createElement("div");
+        overview.className = "overview";
         overview.innerHTML = description_;
 
     movie.append(imgElement);
@@ -106,20 +146,4 @@ function addMovieInDiscover(title_, description_, img_ = "") {
     discover.append(movie);
 }
 
-const search = document.getElementById("form");
-const searchInput = document.getElementById("search");
-search.onsubmit = (ev) => {
-    ev.preventDefault();
-    
-    const movies = document.querySelectorAll(".movie");
-    console.log(movies)
-    movies.forEach(m => {
-        m.remove();
-    });
-
-    requestMoviesSearch(searchInput.value);
-
-}
-
 requestMovies();
-
