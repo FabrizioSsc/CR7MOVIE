@@ -1,0 +1,2 @@
+https://developer.themoviedb.org/reference/intro/getting-started
+https://developer.themoviedb.org/reference/search-movie
