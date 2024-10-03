@@ -131,7 +131,7 @@ function addMovieInDiscover(title_, description_, img_ = "", score_ = 10) {
             const score = document.createElement("span");
             score.className = "green";
             score.innerHTML = score_;
-            
+
             movieInfo.append(movieTitle);
             movieInfo.append(score);
 
