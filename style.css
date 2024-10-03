@@ -1,13 +1,25 @@
+
 *{
+    margin: 0;
+
     box-sizing: border-box;
 }
 
 
 :root{
-    --primay-color:#22254b;
-    --second-color:#373b69;
+    --primay-color:#2A2A28;
+    --second-color:#111111;
     
 
+}
+h1{
+    color: #fff;
+   
+
+}
+#hub{
+    background-color:#FE6D15F7;
+    border-radius: 3px;
 }
 
 body{
@@ -21,8 +33,27 @@ header{
     display: flex;
     justify-content: flex-end;
     background-color: var(--second-color);
+    justify-content: space-around
 
 }
+footer{
+    background-color: #FFFFFF12;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    
+}
+.footer{
+ 
+
+    padding-top:  10px;
+ }
+ 
+
+#icone{
+    margin-left: -30px;
+}
+
 /* barra de pesquisa*/
 .search{
     background-color: transparent;
@@ -31,6 +62,7 @@ header{
     border-radius: 50px;
     font-size: 1rem;
     color: #fff;
+   
 
 }
 
@@ -40,7 +72,7 @@ header{
 }
 
 .search::placeholder{
-    color: #7378c5;
+    color: #fff;
 }
 
 
@@ -93,23 +125,7 @@ main{
      
 }
 
-.movie-info span.green{
-    color: lightgreen;
 
-
-}
-
-.movie-info span.orange{
-    color: orange;
-    
-
-}
-
-.movie-info span.red{
-    color: red;
-    
-
-}
 
 .overview{
     position: absolute;
@@ -121,6 +137,7 @@ main{
     max-height: 100%;
     transform: translateY(101%);
     transition: transform 0.3s ease-in;
+  
 }
 
 .movie:hover .overview{

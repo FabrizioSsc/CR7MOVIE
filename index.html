@@ -1,73 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Movies XXX</title>
     <script src="script.js" defer type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
+    
    <header>
     
-    <form id="form"> <!--Header com a barra de pesquisa-->
-        <input type="text" id="search" class="search" placeholder="Pesquise um filme">
-        <button type="submit">Buscar</button> <!-- Adicione um botão de busca -->
-    </form>
-    
-    
-    <!-- 
+    <h1>Movie <span id="hub">Hub</span> </h1>
     <form id="form"> 
-        <input type="text" id="search" class="search" placeholder="Pesquise um filme">
-    </form>-->
+        
+     
+        <input type="text" id="search" class="search" placeholder="Pesquise um filme " >
+        <span id="icone" style="color: #fff;" style="margin-right: 80px;" class="fa fa-search"> </span >
+    
+    </form>
    </header>
-
+  
    <main id="main"> <!--Aqui é onde vai ficar os filmes-->
-        <div class="movie">
-            <img class="movie-poster" src="https://images.unsplash.com/photo-1519865885898-a54a6f2c7eea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg 
-            &ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8c3BsYXNofHwwfHx8fDE2MjIxODE4NDA&ixlib=rb-1.2.1&q=80&w=1080" alt="catalogoDofilme"> <!--imagem ilustrativa-->
-            
-            <div class="movie-info"> <!--Nessa div vai ficar as informações dos filmes-->
-                <h3>Movie title </h3>
-                <span class="green">9.8</span> 
-            </div>
+  
 
-            <div class="overview">
-                <h3>Visão Geral</h3>
-                aqui vai a descrição do filme 
-            </div>
-        </div>
-
-        <div class="movie">
-            <img class="movie-poster" src="https://images.unsplash.com/photo-1519865885898-a54a6f2c7eea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg 
-            &ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8c3BsYXNofHwwfHx8fDE2MjIxODE4NDA&ixlib=rb-1.2.1&q=80&w=1080" alt="catalogoDofilme"> <!--imagem ilustrativa-->
-            
-            <div class="movie-info"> <!--Nessa div vai ficar as informações dos filmes-->
-                <h3>Movie title </h3>
-                <span class="green">9.8</span> 
-            </div>
-
-            <div class="overview">
-                aqui vai a descrição do filme 
-            </div>
-        </div>
-
-        <div class="movie">
-            <img  src="https://images.unsplash.com/photo-1519865885898-a54a6f2c7eea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg 
-            &ixid=MnwxMjA3fDB8MXxzZWFyY2h8Mnx8c3BsYXNofHwwfHx8fDE2MjIxODE4NDA&ixlib=rb-1.2.1&q=80&w=1080" alt="catalogoDofilme"> <!--imagem ilustrativa-->
-            
-            <div class="movie-info"> <!--Nessa div vai ficar as informações dos filmes-->
-                <h3>Movie title </h3>
-                <span class="green">9.8</span> 
-            </div>
-
-            <div class="overview">
-                aqui vai a descrição do filme 
-            </div>
-        </div>
-
-   </main>
+</main>
+<footer>
+    <div class="footer">
+        &copy; Desenvolvido por Fabrizio e Rian.
+    </div>
+  
+</footer>
 
 </body>
 </html>
